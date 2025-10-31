@@ -13,3 +13,7 @@ h1,
 h2 {
     color: #702d15;
 }
+
+.description {
+    max-width: 600px;
+}
