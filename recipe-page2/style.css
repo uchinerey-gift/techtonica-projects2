@@ -4,9 +4,22 @@ body {
     margin: 0;
     padding: 20px;
 }
+
 .top,
 .left,
 .right {
     max-width: 900px;
     margin: 0 auto;
+}
+
+.top {
+    margin-bottom: 20px;
+}
+
+.left {
+    margin-bottom: 20px;
+}
+
+.right {
+    margin-bottom: 20px;
 }
