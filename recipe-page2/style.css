@@ -4,6 +4,7 @@ body {
     padding: 20px;
     font-family: Arial, Helvetica, sans-serif;
     margin-left: 20px;
+    /* from Phase 3 fix if used */
 }
 
 p {
@@ -37,10 +38,12 @@ body>p {
     max-width: 600px;
 }
 
+/* Phase 4 */
 .checked {
     text-decoration: line-through;
     color: #777;
 }
+
 @media (max-width: 600px) {
     body {
         padding: 16px;
