@@ -2,31 +2,49 @@
 <html lang="en">
 
 <head>
+    <!-- Meta charset: lets the browser know how to read characters -->
     <meta charset="UTF-8" />
+    <!-- Viewport: makes the layout adapt on phones (Bootstrap needs this) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Page title shown on the browser tab -->
     <title>Birria Tacos Recipe</title>
+
+    <!-- Bootstrap 4 CSS (framework for simple responsive layout and navbar) -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+
+    <!-- My custom CSS (overrides come after Bootstrap) -->
     <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+    <!-- Full-width container for the navbar -->
     <div class="container-fluid">
+        <!-- Simple Bootstrap navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <!-- Brand or site name -->
             <a class="navbar-brand" href="#">Birria Tacos</a>
+
+            <!-- Mobile hamburger button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+            <!-- Collapsible nav links -->
             <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- ml-auto pushes links to the right -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
+                        <!-- Jumps to the top section -->
                         <a class="nav-link" href="#top">Home</a>
                     </li>
                     <li class="nav-item">
+                        <!-- Jumps to ingredients section -->
                         <a class="nav-link" href="#ingredients">Ingredients</a>
                     </li>
                     <li class="nav-item">
+                        <!-- Jumps to instructions section -->
                         <a class="nav-link" href="#instructions">Instructions</a>
                     </li>
                 </ul>
@@ -34,10 +52,15 @@
         </nav>
     </div>
 
+    <!-- Fixed-width container for page content -->
     <div class="container">
+        <!-- Bootstrap row that holds all main sections -->
         <div class="row">
+            <!-- Top section: title + description -->
             <div class="top col-12" id="top">
                 <h1>Birria Tacos</h1>
+
+                <!-- Giving this paragraph a class lets me style JUST this paragraph in CSS -->
                 <p class="description">
                     Authentic Birria tacos are tender, flavorful Mexican tacos made with
                     slow-cooked beef, rich spices, and melted cheese, served with a side of
@@ -45,22 +68,28 @@
                 </p>
             </div>
 
+            <!-- Left column: actions toolbar, image, and ingredients -->
             <div class="left col-12">
+                <!-- Simple toolbar with two buttons and a live “checked” counter -->
                 <div id="actions" class="mb-3">
+                    <!-- Creates a notes area on click -->
                     <button id="add-note-btn" type="button">Add Note</button>
+                    <!-- Unchecks all ingredients and removes strikethroughs -->
                     <button id="clear-checks-btn" type="button">Clear Checks</button>
+                    <!-- Live counter updated by JS -->
                     <span id="checked-count" style="margin-left:10px;">Checked: 0</span>
                 </div>
 
+                <!-- Recipe image (width constrained by attribute for simplicity) -->
                 <div>
                     <img src="images/BirriaTacos-11.jpg" alt="Birria tacos served with broth and lime wedges"
                         width="600" />
                 </div>
 
+                <!-- Ingredients section (the UL has an id so JS can target it) -->
                 <div id="ingredients">
                     <h2>Ingredients</h2>
                     <ul id="ingredients-list">
-                        
                         <li>3 lb beef chuck roast, cut into chunks</li>
                         <li>4 dried guajillo chiles</li>
                         <li>2 dried ancho chiles</li>
@@ -75,11 +104,19 @@
                 </div>
             </div>
 
+            <!-- Right column: instructions and related links -->
             <div class="right col-12" id="instructions">
-                <div id="instructions">
+                <!-- Instructions title + toggle button + ordered list -->
+                <div>
                     <h2>Instructions</h2>
+
+                    <!-- NEW FEATURE: show/hide the steps below -->
+                    <button id="toggle-instructions-btn" type="button">
+                        Hide Instructions
+                    </button>
+
+                    <!-- The OL has an id so JS can show/hide it easily -->
                     <ol id="instructions-list">
-                        
                         <li>Soak the chiles in hot water for 15 minutes until soft.</li>
                         <li>Blend chiles with onion, garlic, vinegar and spices to make the sauce.</li>
                         <li>Marinate the beef in the sauce for 1 hour (or overnight).</li>
@@ -90,6 +127,7 @@
                     </ol>
                 </div>
 
+                <!-- Extra links for more versions of the recipe -->
                 <div>
                     <h2>More Birria Taco Recipes</h2>
                     <p>Check out other versions of this delicious dish:</p>
@@ -109,12 +147,16 @@
             </div>
         </div>
 
+        <!-- Simple footer line; the CSS clears floats so this sits below columns -->
         <p>Recipe project by Gloria (Techtonica).</p>
     </div>
 
+    <!-- Bootstrap JS (for navbar toggle on mobile) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- My Phase 4 JavaScript (DOM interactivity) -->
     <script src="script.js"></script>
 </body>
 
