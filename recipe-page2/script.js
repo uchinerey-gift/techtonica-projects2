@@ -14,6 +14,24 @@ ingredientItems.forEach((li) => {
     li.insertBefore(document.createTextNode(" "), box.nextSibling);
 });
 
+ const counterEl = document.getElementById("checked-count");
 
+function updateCounter() {
+    const checked = ingredientsList.querySelectorAll(".ingredient-check:checked").length;
+    counterEl.textContent = "Checked: " + checked;
 }
+ingredientsList.addEventListener("change", function (e) {
+    if (e.target.classList.contains("ingredient-check")) {
+        const li = e.target.closest("li");
+        if (e.target.checked) {
+            li.classList.add("checked");
+        } else {
+            li.classList.remove("checked");
+        }
+        updateCounter();
+    }
+});
+
+updateCounter();
+
 
