@@ -36,3 +36,8 @@ body>p {
     clear: both;
     max-width: 600px;
 }
+
+.checked {
+    text-decoration: line-through;
+    color: #777;
+}
