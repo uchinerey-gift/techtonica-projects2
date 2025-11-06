@@ -41,3 +41,10 @@ body>p {
     text-decoration: line-through;
     color: #777;
 }
+@media (max-width: 600px) {
+    body {
+        padding: 16px;
+        font-size: 18px;
+        line-height: 1.6;
+    }
+}
