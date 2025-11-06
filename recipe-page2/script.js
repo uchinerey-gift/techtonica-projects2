@@ -60,6 +60,17 @@ addNoteBtn.addEventListener("click", function () {
     noteWrap.appendChild(textarea);
     actions.insertAdjacentElement("afterend", noteWrap);
 });
+const clearBtn = document.getElementById("clear-checks-btn");
+clearBtn.addEventListener("click", function () {
+    const boxes = ingredientsList.querySelectorAll(".ingredient-check");
+    boxes.forEach((b) => {
+        b.checked = false;
+        const li = b.closest("li");
+        li && li.classList.remove("checked");
+    });
+    updateCounter();
+});
+
 
 
 
