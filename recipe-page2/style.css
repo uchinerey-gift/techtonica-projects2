@@ -1,49 +1,65 @@
+/* Page background, spacing, and base font */
 body {
     background-color: #f8f4ef;
     margin: 0;
     padding: 20px;
     font-family: Arial, Helvetica, sans-serif;
+
+    /* This small left margin keeps content from touching the edge after Bootstrap */
     margin-left: 20px;
-    /* from Phase 3 fix if used */
 }
 
+/* General paragraph text color */
 p {
     color: #333;
 }
 
+/* Headline colors (keeps theme cohesive) */
 h1,
 h2 {
     color: #702d15;
 }
 
+/* Limits width of the description paragraph to match image width for readability */
 .description {
     max-width: 600px;
 }
 
+/* Left side layout area: image + ingredients */
 .left {
     width: 600px;
+    /* matches image width */
     float: left;
+    /* places this section on the left side */
     margin-bottom: 20px;
 }
 
+/* Right side layout area: instructions + links */
 .right {
     width: 600px;
+    /* same width for visual balance */
     float: left;
+    /* float left so it sits next to .left */
     margin-left: 30px;
+    /* creates space between left + right columns */
     margin-bottom: 20px;
 }
 
+/* Footer text clears floats so it does not overlap layout columns */
 body>p {
     clear: both;
     max-width: 600px;
 }
 
-/* Phase 4 */
+/* Phase 4 Interactive Feature:
+   When an ingredient is checked off, we apply this class using JS */
 .checked {
     text-decoration: line-through;
     color: #777;
+    /* light faded look for "done" ingredients */
 }
 
+/* Makes layout easier to read on smaller screens */
 @media (max-width: 600px) {
     body {
         padding: 16px;
