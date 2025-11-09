@@ -2,65 +2,54 @@
 <html lang="en">
 
 <head>
-    <!-- Meta charset: lets the browser know how to read characters -->
+    <!-- Page setup and mobile scaling -->
     <meta charset="UTF-8" />
-    <!-- Viewport: makes the layout adapt on phones (Bootstrap needs this) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Page title shown on the browser tab -->
+    <!-- Title shown in browser tab -->
     <title>Birria Tacos Recipe</title>
 
-    <!-- Bootstrap 4 CSS (framework for simple responsive layout and navbar) -->
+    <!-- Bootstrap CSS - for layout + navbar -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
 
-    <!-- My custom CSS (overrides come after Bootstrap) -->
+    <!-- My custom styling -->
     <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <!-- Full-width container for the navbar -->
+
+    <!-- Navigation bar at the top -->
+    <!-- I used Bootstrap to make this easy and responsive -->
     <div class="container-fluid">
-        <!-- Simple Bootstrap navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <!-- Brand or site name -->
             <a class="navbar-brand" href="#">Birria Tacos</a>
 
-            <!-- Mobile hamburger button -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <!-- Mobile menu toggle button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- Collapsible nav links -->
+            <!-- Nav links -->
             <div class="collapse navbar-collapse" id="navbarNav">
-                <!-- ml-auto pushes links to the right -->
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <!-- Jumps to the top section -->
-                        <a class="nav-link" href="#top">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <!-- Jumps to ingredients section -->
-                        <a class="nav-link" href="#ingredients">Ingredients</a>
-                    </li>
-                    <li class="nav-item">
-                        <!-- Jumps to instructions section -->
-                        <a class="nav-link" href="#instructions">Instructions</a>
-                    </li>
+                    <!-- Clicking these scrolls to page sections -->
+                    <li class="nav-item active"><a class="nav-link" href="#top">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#ingredients">Ingredients</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#instructions">Instructions</a></li>
                 </ul>
             </div>
         </nav>
     </div>
 
-    <!-- Fixed-width container for page content -->
+
+    <!-- Main content container -->
     <div class="container">
-        <!-- Bootstrap row that holds all main sections -->
         <div class="row">
-            <!-- Top section: title + description -->
+
+            <!-- Title + description section -->
+            <!-- Description has its own class so I can match width to image -->
             <div class="top col-12" id="top">
                 <h1>Birria Tacos</h1>
-
-                <!-- Giving this paragraph a class lets me style JUST this paragraph in CSS -->
                 <p class="description">
                     Authentic Birria tacos are tender, flavorful Mexican tacos made with
                     slow-cooked beef, rich spices, and melted cheese, served with a side of
@@ -68,25 +57,26 @@
                 </p>
             </div>
 
-            <!-- Left column: actions toolbar, image, and ingredients -->
+
+            <!-- Left side: image + ingredients + action buttons -->
             <div class="left col-12">
-                <!-- Simple toolbar with two buttons and a live “checked” counter -->
+
+                <!-- Buttons used for DOM interactions in Phase 4 -->
+                <!-- I talk about these when explaining my JavaScript -->
                 <div id="actions" class="mb-3">
-                    <!-- Creates a notes area on click -->
                     <button id="add-note-btn" type="button">Add Note</button>
-                    <!-- Unchecks all ingredients and removes strikethroughs -->
                     <button id="clear-checks-btn" type="button">Clear Checks</button>
-                    <!-- Live counter updated by JS -->
                     <span id="checked-count" style="margin-left:10px;">Checked: 0</span>
                 </div>
 
-                <!-- Recipe image (width constrained by attribute for simplicity) -->
+                <!-- Recipe image -->
+                <!-- Constrained width for layout control -->
                 <div>
                     <img src="images/BirriaTacos-11.jpg" alt="Birria tacos served with broth and lime wedges"
-                        width="600px" />
+                        width="600" />
                 </div>
 
-                <!-- Ingredients section (the UL has an id so JS can target it) -->
+                <!-- Ingredient list (JS selects this using its ID) -->
                 <div id="ingredients">
                     <h2>Ingredients</h2>
                     <ul id="ingredients-list">
@@ -104,18 +94,18 @@
                 </div>
             </div>
 
-            <!-- Right column: instructions and related links -->
+
+            <!-- Right side: instructions + links -->
             <div class="right col-12" id="instructions">
-                <!-- Instructions title + toggle button + ordered list -->
+
+                <!-- Instructions section -->
                 <div>
                     <h2>Instructions</h2>
 
-                    <!-- NEW FEATURE: show/hide the steps below -->
-                    <button id="toggle-instructions-btn" type="button">
-                        Hide Instructions
-                    </button>
+                    <!-- DOM toggle button shows/hides the list below -->
+                    <button id="toggle-instructions-btn" type="button">Hide Instructions</button>
 
-                    <!-- The OL has an id so JS can show/hide it easily -->
+                    <!-- JS targets this OL to show/hide -->
                     <ol id="instructions-list">
                         <li>Soak the chiles in hot water for 15 minutes until soft.</li>
                         <li>Blend chiles with onion, garlic, vinegar and spices to make the sauce.</li>
@@ -127,37 +117,33 @@
                     </ol>
                 </div>
 
-                <!-- Extra links for more versions of the recipe -->
+                <!-- Extra related recipe links -->
                 <div>
                     <h2>More Birria Taco Recipes</h2>
-                    <p>Check out other versions of this delicious dish:</p>
+                    <p>Check out other versions of this dish:</p>
                     <ul>
-                        <li>
-                            <a href="https://www.acozykitchen.com/birria-tacos" target="_blank">
-                                Birria Tacos by A Cozy Kitchen
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.thecookierookie.com/birria-tacos/" target="_blank">
-                                Birria Tacos by The Cookie Rookie
-                            </a>
-                        </li>
+                        <li><a href="https://www.acozykitchen.com/birria-tacos" target="_blank">A Cozy Kitchen</a></li>
+                        <li><a href="https://www.thecookierookie.com/birria-tacos/" target="_blank">The Cookie
+                                Rookie</a></li>
                     </ul>
                 </div>
             </div>
+
         </div>
 
-        <!-- Simple footer line; the CSS clears floats so this sits below columns -->
+        <!-- Footer -->
         <p>Recipe project by Gloria (Techtonica).</p>
     </div>
 
-    <!-- Bootstrap JS (for navbar toggle on mobile) -->
+
+    <!-- Bootstrap JS for mobile navbar -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- My Phase 4 JavaScript (DOM interactivity) -->
+    <!-- My JavaScript for interactive features -->
     <script src="script.js"></script>
+
 </body>
 
 </html>
