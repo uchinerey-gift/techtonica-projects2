@@ -1,156 +1,66 @@
-// Wait until the HTML is fully parsed so elements are available
+// Wait for the page to fully load before running any JS
 document.addEventListener("DOMContentLoaded", function () {
-    console.log("Recipe DOM ready");
 
-    // =============================
-    // INGREDIENT CHECKBOXES + COUNT
-    // =============================
+    // Select all ingredient list items so we can add click behavior to each one
+    const ingredientItems = document.querySelectorAll("#ingredients-list li");
 
-    // Grab the <ul> that holds all ingredient <li> items
-    const ingredientsList = document.getElementById("ingredients-list");
+    // Select display that shows how many items are checked
+    const checkedCountDisplay = document.getElementById("checked-count");
 
-    // If the list exists, get all list items to work with
-    const ingredientItems = ingredientsList ? ingredientsList.querySelectorAll("li") : [];
+    // Select buttons used for interactivity
+    const notesButton = document.getElementById("add-note-btn");
+    const clearButton = document.getElementById("clear-checks-btn");
+    const toggleInstructionsButton = document.getElementById("toggle-instructions-btn");
 
-    // For each <li>, create a checkbox and insert it at the start
-    ingredientItems.forEach((li) => {
-        // Make a checkbox input
-        const box = document.createElement("input");
-        box.type = "checkbox";
-        box.className = "ingredient-check"; // used for counting & styling
+    // Select the area where new notes will be added
+    const notesArea = document.getElementById("ingredients"); // notes will appear under ingredients
 
-        // Put checkbox before the text inside the <li>
-        li.insertBefore(box, li.firstChild);
-        // Add a little space between the checkbox and the text
-        li.insertBefore(document.createTextNode(" "), box.nextSibling);
+    // Select instructions list (so we can hide/show it)
+    const instructionsList = document.getElementById("instructions-list");
+
+    // --- FEATURE 1: Click ingredient to check it off ---
+    // (Adds or removes the .checked class which adds strike-through in CSS)
+    ingredientItems.forEach(item => {
+        item.addEventListener("click", () => {
+            item.classList.toggle("checked");
+            updateCheckedCount();
+        });
     });
 
-    // This <span> shows "Checked: X"
-    const counterEl = document.getElementById("checked-count");
-
-    // Count how many checkboxes are checked and update the UI
-    function updateCounter() {
-        const checked = ingredientsList.querySelectorAll(".ingredient-check:checked").length;
-        counterEl.textContent = "Checked: " + checked;
+    // Update how many items are checked (displayed at the top)
+    function updateCheckedCount() {
+        const checkedItems = document.querySelectorAll(".checked").length;
+        checkedCountDisplay.textContent = `Checked: ${checkedItems}`;
     }
 
-    // When a checkbox changes, toggle a class on the parent <li> and recount
-    ingredientsList.addEventListener("change", function (e) {
-        if (e.target.classList.contains("ingredient-check")) {
-            const li = e.target.closest("li");
-            if (e.target.checked) {
-                // .checked class adds a strikethrough via CSS
-                li.classList.add("checked");
-            } else {
-                li.classList.remove("checked");
-            }
-            updateCounter();
-        }
+    // --- FEATURE 2: Add a Notes Text Box ---
+    // Creates a place for the user to type cooking notes
+    notesButton.addEventListener("click", () => {
+        const noteBox = document.createElement("textarea");
+        noteBox.placeholder = "Write your cooking notes here...";
+        noteBox.style.display = "block";
+        noteBox.style.marginTop = "10px";
+        notesArea.appendChild(noteBox);
     });
 
-    // Initialize the counter on page load
-    updateCounter();
-
-    // =============================
-    // ADD NOTE AREA ON BUTTON CLICK
-    // =============================
-
-    // The "Add Note" button and the toolbar container
-    const addNoteBtn = document.getElementById("add-note-btn");
-    const actions = document.getElementById("actions");
-
-    // Prevent creating multiple note areas
-    let noteCreated = false;
-
-    // Create a <label> + <textarea> just below the toolbar when clicked
-    addNoteBtn.addEventListener("click", function () {
-        if (noteCreated) return;
-        noteCreated = true;
-
-        // Wrapper div to hold the label and textarea
-        const noteWrap = document.createElement("div");
-        noteWrap.id = "note-wrap";
-        noteWrap.style.margin = "10px 0";
-
-        // Label for accessibility (ties to the textarea by "for"/"id")
-        const label = document.createElement("label");
-        label.textContent = "Notes:";
-        label.setAttribute("for", "notes-area");
-        label.style.display = "block";
-
-        // The notes textarea
-        const textarea = document.createElement("textarea");
-        textarea.id = "notes-area";
-        textarea.rows = 4;
-        textarea.style.width = "100%";
-
-        // Build and insert after the toolbar
-        noteWrap.appendChild(label);
-        noteWrap.appendChild(textarea);
-        actions.insertAdjacentElement("afterend", noteWrap);
+    // --- FEATURE 3: Clear All Checked Ingredients ---
+    // Removes the strike-through class and resets the count
+    clearButton.addEventListener("click", () => {
+        ingredientItems.forEach(item => item.classList.remove("checked"));
+        updateCheckedCount();
     });
 
-    // ======================================
-    // CLEAR ALL CHECKBOXES WITH ONE CLICK
-    // ======================================
+    // --- FEATURE 4: Show/Hide Instructions ---
+    // Makes the page cleaner and easier to read
+    toggleInstructionsButton.addEventListener("click", () => {
+        instructionsList.classList.toggle("hidden");
 
-    const clearBtn = document.getElementById("clear-checks-btn");
-    clearBtn.addEventListener("click", function () {
-        // Find all ingredient checkboxes
-        const boxes = ingredientsList.querySelectorAll(".ingredient-check");
-
-        // For each, uncheck and remove the strikethrough class
-        boxes.forEach((b) => {
-            b.checked = false;
-            const li = b.closest("li");
-            if (li) {
-                li.classList.remove("checked");
-            }
-        });
-
-        // Reset the counter to zero
-        updateCounter();
-    });
-
-    // ============================================
-    // KEYBOARD ACCESSIBILITY FOR INGREDIENT ITEMS
-    // ============================================
-
-    // Make each <li> focusable and allow pressing Enter to toggle the checkbox
-    ingredientItems.forEach((li) => {
-        li.tabIndex = 0; // allows keyboard focus
-        li.addEventListener("keydown", function (e) {
-            if (e.key === "Enter") {
-                const box = li.querySelector(".ingredient-check");
-                if (box) {
-                    // Flip the checked state
-                    box.checked = !box.checked;
-                    // Trigger the same behavior as a real change event
-                    const event = new Event("change", { bubbles: true });
-                    box.dispatchEvent(event);
-                }
-            }
-        });
-    });
-
-    // ===================================
-    // SHOW / HIDE THE INSTRUCTIONS LIST
-    // ===================================
-
-    // Grab the ordered list of steps and the toggle button
-    const instructionsList = document.getElementById("instructions-list");
-    const toggleBtn = document.getElementById("toggle-instructions-btn");
-
-    // Clicking the button hides or shows the list and changes button text
-    toggleBtn.addEventListener("click", function () {
-        if (instructionsList.style.display === "none") {
-            // Show the list
-            instructionsList.style.display = "block";
-            toggleBtn.textContent = "Hide Instructions";
+        // Change button text based on visibility
+        if (instructionsList.classList.contains("hidden")) {
+            toggleInstructionsButton.textContent = "Show Instructions";
         } else {
-            // Hide the list
-            instructionsList.style.display = "none";
-            toggleBtn.textContent = "Show Instructions";
+            toggleInstructionsButton.textContent = "Hide Instructions";
         }
     });
+
 });
