@@ -2,37 +2,33 @@
 <html lang="en">
 
 <head>
-    <!-- Page setup and mobile scaling -->
+    <!-- PAGE SETUP -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Title shown in browser tab -->
     <title>Birria Tacos Recipe</title>
 
-    <!-- Bootstrap CSS - for layout + navbar -->
+    <!-- BOOTSTRAP (PHASE 3) -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
 
-    <!-- My custom styling -->
+    <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-    <!-- Navigation bar at the top -->
-    <!-- I used Bootstrap to make this easy and responsive -->
+    <!-- NAVBAR (Bootstrap) -->
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#">Birria Tacos</a>
 
-            <!-- Mobile menu toggle button -->
+            <!-- Mobile menu toggle -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- Nav links -->
+            <!-- NAV LINKS -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <!-- Clicking these scrolls to page sections -->
                     <li class="nav-item active"><a class="nav-link" href="#top">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#ingredients">Ingredients</a></li>
                     <li class="nav-item"><a class="nav-link" href="#instructions">Instructions</a></li>
@@ -41,13 +37,11 @@
         </nav>
     </div>
 
-
-    <!-- Main content container -->
+    <!-- MAIN CONTENT WRAPPER -->
     <div class="container">
         <div class="row">
 
-            <!-- Title + description section -->
-            <!-- Description has its own class so I can match width to image -->
+            <!-- PAGE TITLE + DESCRIPTION -->
             <div class="top col-12" id="top">
                 <h1>Birria Tacos</h1>
                 <p class="description">
@@ -57,26 +51,21 @@
                 </p>
             </div>
 
-
-            <!-- Left side: image + ingredients + action buttons -->
+            <!-- FEATURE BUTTONS SECTION -->
+            <!-- (buttons used by JS in Phase 4) -->
             <div class="left col-12">
-
-                <!-- Buttons used for DOM interactions in Phase 4 -->
-                <!-- I talk about these when explaining my JavaScript -->
                 <div id="actions" class="mb-3">
                     <button id="add-note-btn" type="button">Add Note</button>
                     <button id="clear-checks-btn" type="button">Clear Checks</button>
                     <span id="checked-count" style="margin-left:10px;">Checked: 0</span>
                 </div>
 
-                <!-- Recipe image -->
-                <!-- Constrained width for layout control -->
+                <!-- SECTION: Image + Ingredients (Left column) -->
                 <div>
                     <img src="images/BirriaTacos-11.jpg" alt="Birria tacos served with broth and lime wedges"
                         width="600" />
                 </div>
 
-                <!-- Ingredient list (JS selects this using its ID) -->
                 <div id="ingredients">
                     <h2>Ingredients</h2>
                     <ul id="ingredients-list">
@@ -94,18 +83,11 @@
                 </div>
             </div>
 
-
-            <!-- Right side: instructions + links -->
+            <!-- SECTION: Instructions (Right Column) -->
             <div class="right col-12" id="instructions">
-
-                <!-- Instructions section -->
                 <div>
                     <h2>Instructions</h2>
-
-                    <!-- DOM toggle button shows/hides the list below -->
                     <button id="toggle-instructions-btn" type="button">Hide Instructions</button>
-
-                    <!-- JS targets this OL to show/hide -->
                     <ol id="instructions-list">
                         <li>Soak the chiles in hot water for 15 minutes until soft.</li>
                         <li>Blend chiles with onion, garlic, vinegar and spices to make the sauce.</li>
@@ -117,10 +99,9 @@
                     </ol>
                 </div>
 
-                <!-- Extra related recipe links -->
                 <div>
                     <h2>More Birria Taco Recipes</h2>
-                    <p>Check out other versions of this dish:</p>
+                    <p>Check out other versions of this delicious dish:</p>
                     <ul>
                         <li><a href="https://www.acozykitchen.com/birria-tacos" target="_blank">A Cozy Kitchen</a></li>
                         <li><a href="https://www.thecookierookie.com/birria-tacos/" target="_blank">The Cookie
@@ -131,19 +112,17 @@
 
         </div>
 
-        <!-- Footer -->
+        <!-- FOOTER -->
         <p>Recipe project by Gloria (Techtonica).</p>
     </div>
 
-
-    <!-- Bootstrap JS for mobile navbar -->
+    <!-- BOOTSTRAP JS (navbar toggle) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- My JavaScript for interactive features -->
+    <!-- APP JS (PHASE 4 DOM) -->
     <script src="script.js"></script>
-
 </body>
 
 </html>
