@@ -1,6 +1,6 @@
-// === BOOT: run JS after the page loads ===
+// === BOOT: Run JS after the page loads ===
 document.addEventListener("DOMContentLoaded", function () {
-    // Base element grabs
+    // Base grabs
     const ingredientItems = document.querySelectorAll("#ingredients-list li");
     const checkedCountDisplay = document.getElementById("checked-count");
     const notesButton = document.getElementById("add-note-btn");
@@ -9,14 +9,24 @@ document.addEventListener("DOMContentLoaded", function () {
     const notesArea = document.getElementById("ingredients");
     const instructionsList = document.getElementById("instructions-list");
 
-    // === FEATURE 1: Ingredient Checkboxes & Strike-Through ===
+    // === FEATURE 1: Ingredient Checkboxes + Strike-through ===
     ingredientItems.forEach(item => {
-        item.addEventListener("click", () => {
+        // Create a checkbox for each ingredient
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.style.marginRight = "8px";
+
+        // Add checkbox to the beginning of the ingredient line
+        item.prepend(checkbox);
+
+        // When checkbox is clicked: toggle strike-through + update counter
+        checkbox.addEventListener("change", () => {
             item.classList.toggle("checked");
             updateCheckedCount();
         });
     });
 
+    // Updates the counter text
     function updateCheckedCount() {
         const checkedItems = document.querySelectorAll(".checked").length;
         checkedCountDisplay.textContent = `Checked: ${checkedItems}`;
@@ -31,13 +41,17 @@ document.addEventListener("DOMContentLoaded", function () {
         notesArea.appendChild(noteBox);
     });
 
-    // === FEATURE 3: Clear Ingredient Checks ===
+    // === FEATURE 3: Clear Ingredient Checks (FULL RESET) ===
     clearButton.addEventListener("click", () => {
-        ingredientItems.forEach(item => item.classList.remove("checked"));
-        updateCheckedCount();
+        ingredientItems.forEach(item => {
+            item.classList.remove("checked"); // remove strike-through
+            const box = item.querySelector('input[type="checkbox"]');
+            if (box) box.checked = false; // uncheck checkbox itself
+        });
+        updateCheckedCount(); // reset counter
     });
 
-    // === FEATURE 4: Show/Hide Instructions Toggle ===
+    // === FEATURE 4: Show / Hide Instructions ===
     toggleInstructionsBtn.addEventListener("click", () => {
         if (instructionsList.style.display === "none") {
             instructionsList.style.display = "block";
